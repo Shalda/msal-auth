@@ -1,7 +1,5 @@
 <table>
   <tr>
-    <td><a [routerLink]="['/public-page']" routerLinkActive="true">[PUBLIC-PAGE]</a></td>
-    <td><a [routerLink]="['/restricted-page']" routerLinkActive="true" *ngIf="isLoggedIn()">[RESTRICTED-PAGE]</a></td>
     <td><button (click)="login()" *ngIf="!isLoggedIn()">SIGN IN</button></td>
     <td><button (click)="logout()" *ngIf="isLoggedIn()">SIGN OUT</button></td>
   </tr>
@@ -12,4 +10,27 @@
 <div *ngIf="!isLoggedIn()">
   <h3>You are NOT logged in</h3>
 </div>
-<router-outlet></router-outlet>
+<div *ngIf="isLoggedIn()">
+  <table>
+    <tr>
+      <td><span>Welcome {{getName()}}!</span></td>
+    </tr>
+    <tr>
+      <td><span><button (click)="callProfile()">GET PROFILE</button></span></td>
+    </tr>
+    <tr>
+      <td><span><button (click)="callEmails()">GET EMAILS</button></span></td>
+    </tr>
+    <tr>
+      <td><span><button (click)="callStorage()">GET STORAGE</button></span></td>
+    </tr>
+    <tr>
+      <td><span><button (click)="getToken()">GET NEW TOKEN</button></span></td>
+      <td><span><button (click)="gitSearch()">random request</button></span></td>
+    </tr>
+    <tr>
+      <td><span *ngIf="isLoggedIn()">API Response: {{apiResponse}}</span></td>
+    </tr>
+
+  </table>
+</div>
